@@ -38,8 +38,12 @@ dataframe_2[0] = dataframe_2[0] + 1802
 combined = pd.concat([dataframe_1, dataframe_2])
 
 # Rename the columns and drop unnecessary ones
-combined.rename(columns={0: "frame", 1: "object_number", 2: "x_center", 3: "y_center", 4: "width", 5: "height", 6: "off_screen", 7: "class", 8: "idk"}, inplace=True)
+combined.rename(columns={0: "frame", 1: "object_number", 2: "x_left", 3: "y_top", 4: "width", 5: "height", 6: "off_screen", 7: "class", 8: "idk"}, inplace=True)
 combined.drop(columns=["off_screen", "idk"], inplace=True)
+
+# Go from MOT to yolo ones
+combined["x_center"] = combined["x_left"] + combined["width"]/2
+combined["y_center"] = combined["y_top"] + combined["height"]/2 
 
 # normalize the coordinates
 combined["x_center"] = combined["x_center"] / 1920

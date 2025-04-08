@@ -14,3 +14,5 @@ cp -r /path/to/your/dataset ./data
 ```bash
 python format_dataset.py
 ```
+
+![alt text](image.png)
