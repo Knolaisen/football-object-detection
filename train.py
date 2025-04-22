@@ -1,16 +1,18 @@
 # %%
 import os
-from ultralytics import YOLO
 import wandb
 from dotenv import load_dotenv
 
 load_dotenv()
 wandb.login(key=os.getenv("WANDB_API_KEY"))
 
+from ultralytics import YOLO
+
 
 # %%
 model: YOLO = YOLO("yolo11l.pt")
-data_path = "data/data.yaml"
+# data_path = "data.yaml"
+data_path = "data/k_fold/0/data.yaml"
 
 # %%
 model.val(
@@ -20,28 +22,16 @@ model.val(
 # %%
 results = model.train(
     data=data_path,
-    epochs=300,
+    epochs=2000,
     batch=16,
     device="0",
     workers=8,
     project="CV-RBK-large",
-    name="baseline",
     exist_ok=True,
     save_period=1,
     fliplr=0.5,
 )
 #  /home/krisnol/Documents/data/rbk_structured/train/images
 #  /home/krisnol/Documents/football-object-detection/data/rbk_structured/val/images
-# 
-model.val(
-    data=data_path,
-)
-
-# %%
-results = model.predict("test_images/21.jpg", save=True)
-
-# %%
-results[0].show()
-
 
 

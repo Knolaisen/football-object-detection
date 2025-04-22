@@ -1,0 +1,8 @@
+train: /work/krisnol/football-object-detection/data/rbk_structured/images/train
+val: /work/krisnol/football-object-detection/data/rbk_structured/images/train
+
+nc: 2
+
+names:
+  0: ball
+  1: player

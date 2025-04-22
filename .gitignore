@@ -3,3 +3,5 @@ runs/*
 !runs/.gitkeep
 .env
 .venv
+wandb/*
+CV-RBK-large/*
